@@ -2,10 +2,19 @@
   "name": "event-source-web",
   "version": "1.0.0",
   "description": "用于sse连接并可以设置请求头",
-  "main": "sse EventSource js ",
+  "main": "index.js",
+  "keywords": [
+    "sse",
+    "event-source",
+    "web"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mwmzuishuai/event-source-web.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "mwm",
+  "license": "MIT"
 }
