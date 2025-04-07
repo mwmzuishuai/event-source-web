@@ -15,6 +15,8 @@ function EventSourceWeb(url, options) {
     this.onopen = null;
     // 初始化接收到消息时的回调函数，默认为 null
     this.onmessage = null;
+    // 初始化连接关闭时的回调函数，默认为 null
+    this.onclose = null;
     // 初始化连接出错时的回调函数，默认为 null
     this.onerror = null;
 
@@ -31,8 +33,6 @@ function EventSourceWeb(url, options) {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            // 打印连接成功的日志
-            console.log('连接成功');
             // 获取响应体的可读流
             const reader = response.body.getReader();
             // 循环读取流中的数据
@@ -40,19 +40,19 @@ function EventSourceWeb(url, options) {
                 const { done, value } = await reader.read();
                 // 如果读取完成，则跳出循环
                 if (done) {
+                    // 如果定义了 onclose 回调函数，则调用它
+                    if (typeof this.onclose === 'function') {
+                        this.onclose();
+                    }
                     break;
                 }
                 // 将读取到的二进制数据解码为字符串
                 const text = this.decoder.decode(value);
-                // 打印接收到的内容
-                console.log('接收到内容:', text);
                 // 如果定义了 onmessage 回调函数，则调用它并传入接收到的数据
                 if (typeof this.onmessage === 'function') {
                     this.onmessage(text);
                 }
             }
-            // 打印接收完毕的日志
-            console.log('接收完毕');
         } catch (error) {
             // 打印连接失败的错误信息
             console.error('连接失败:', error);
