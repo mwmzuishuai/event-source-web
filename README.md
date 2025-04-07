@@ -1,11 +1,16 @@
 # 目录 <!-- omit in toc -->
 
+- [介绍](#介绍)
 - [功能](#功能)
-- [案例](#案例)
+- [安装](#安装)
+- [使用](#使用)
 
 # 介绍
 
-    基于 EventSource 封装的 Web 端 EventSource 库，支持流式数据上传请求头
+    传统的 EventSource 类不支持流式数据上传请求头，如 Content-Type、Content-Length 等。本库基于 fetch API 实现了一个支持流式数据上传请求头的 EventSource 类。
+    该类继承自 EventSource 类，重写了 open 方法，使用 fetch API 实现了事件源的连接和消息的接收。
+    该类还提供了 onopen、onmessage、onerror 和 onclose 方法，用于处理事件源的连接、消息、错误和关闭事件。
+    本库的优点是：对比于其他库体积小，易于使用，支持流式数据上传请求头，支持自定义请求头和请求方法。
 
 # 功能
 
@@ -16,10 +21,6 @@
 # 安装
 
     npm install event-source-web
-
-# 使用
-
-    import EventSourceWeb from 'event-source-web';
 
 # 使用
 

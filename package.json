@@ -1,6 +1,6 @@
 {
   "name": "event-source-web",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "用于sse连接并可以设置请求头",
   "main": "index.js",
   "keywords": [
